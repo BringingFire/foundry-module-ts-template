@@ -1,0 +1,48 @@
+name: Publish release
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: yarn
+
+      - name: Extract tag version number
+        id: get_version
+        uses: battila7/get-version-action@v2
+
+      - name: Run Vite build
+        env:
+          MODULE_VERSION: ${{steps.get_version.outputs.version-without-v}}
+          GH_PROJECT: ${{github.repository}}
+          GH_TAG: ${{github.event.release.tag_name}}
+        run: yarn build
+
+      - name: Create zip archive
+        working-directory: dist
+        run: zip -r ./module.zip module.json style.css scripts/ templates/ languages/
+
+      - name: Update release with files
+        id: create_version_release
+        uses: ncipollo/release-action@v1
+        with:
+          allowUpdates: true # Set this to false if you want to prevent updating existing releases
+          name: ${{ github.event.release.name }}
+          draft: ${{ github.event.release.unpublished }}
+          prerelease: ${{ github.event.release.prerelease }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          artifacts: "./dist/module.json, ./dist/module.zip"
+          tag: ${{ github.event.release.tag_name }}
+          body: ${{ github.event.release.body }}
