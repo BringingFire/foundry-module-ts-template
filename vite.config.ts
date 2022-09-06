@@ -1,6 +1,13 @@
+import * as fsPromises from "fs/promises";
 import copy from "rollup-plugin-copy";
 import scss from "rollup-plugin-scss";
-import { defineConfig } from "vite";
+import { defineConfig, Plugin } from "vite";
+
+const moduleVersion = process.env.MODULE_VERSION;
+const githubProject = process.env.GH_PROJECT;
+const githubTag = process.env.GH_TAG;
+
+console.log(process.env.VSCODE_INJECTION);
 
 export default defineConfig({
   build: {
@@ -15,6 +22,7 @@ export default defineConfig({
     },
   },
   plugins: [
+    updateModuleManifestPlugin(),
     scss({
       output: "dist/style.css",
       sourceMap: true,
@@ -22,7 +30,6 @@ export default defineConfig({
     }),
     copy({
       targets: [
-        { src: "src/module.json", dest: "dist" },
         { src: "src/languages", dest: "dist" },
         { src: "src/templates", dest: "dist" },
       ],
@@ -30,3 +37,37 @@ export default defineConfig({
     }),
   ],
 });
+
+function updateModuleManifestPlugin(): Plugin {
+  return {
+    name: "update-module-manifest",
+    async writeBundle(): Promise<void> {
+      const packageContents = JSON.parse(
+        await fsPromises.readFile("./package.json", "utf-8")
+      ) as Record<string, unknown>;
+      const version = moduleVersion || (packageContents.version as string);
+      const manifestContents: string = await fsPromises.readFile(
+        "src/module.json",
+        "utf-8"
+      );
+      const manifestJson = JSON.parse(manifestContents) as Record<
+        string,
+        unknown
+      >;
+      manifestJson["version"] = version;
+      if (githubProject) {
+        const baseUrl = `https://github.com/${githubProject}/releases`;
+        manifestJson["manifest"] = `${baseUrl}/latest/download/module.json`;
+        if (githubTag) {
+          manifestJson[
+            "download"
+          ] = `${baseUrl}/download/${githubTag}/module.zip`;
+        }
+      }
+      await fsPromises.writeFile(
+        "dist/module.json",
+        JSON.stringify(manifestJson, null, 4)
+      );
+    },
+  };
+}
