@@ -2,6 +2,10 @@
 
 This repo is meant to be used as a starting point for creating your own FoundryVTT module with [Typescript][2]. If you are using Github you can get started by clicking the green `Use this template` button in the upper-right.
 
+## What's in the box
+
+Out of the box this template adds a button to the top of the Actors directory. Clicking it brings up a modal with a button that will load a picture of a random dog from the [Dog API][3]. This demonstrates how to perform some common tasks such as render templates and call external APIs, and hopefully provides a decent starting point for developing your own module.
+
 ## Todo
 
 If you have just created a new project with this template there are a few changes you should make to start:
@@ -12,3 +16,4 @@ If you have just created a new project with this template there are a few change
 
 [1]: https://foundryvtt.com/
 [2]: https://www.typescriptlang.org/
+[3]: https://dog.ceo/dog-api/
