@@ -4,7 +4,6 @@
   "title": "Typescript Template Module",
   "description": "A template module using Typescript. You should change name, title, and description in module.json.",
   "version": "1.0.0",
-  "languages": [],
   "packs": [],
   "system": [],
   "dependencies": [],
@@ -14,6 +13,13 @@
     "verified": "10",
     "maximum": "10"
   },
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "languages/en.json"
+    }
+  ],
   "styles": ["style.css"],
   "esmodules": ["scripts/module.js"]
 }
