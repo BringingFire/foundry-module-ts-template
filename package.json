@@ -1,0 +1,7 @@
+{
+  "name": "foundry-module-ts",
+  "version": "1.0.0",
+  "description": "A template project for FoundryVTT modules using Typescript",
+  "license": "MIT",
+  "private": true
+}
