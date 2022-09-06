@@ -2,15 +2,15 @@
 // code and not include them in the build output.
 import "../styles/style.scss";
 import DogBrowser from "./apps/dogBrowser";
-import { moduleName } from "./constants";
+import { moduleId } from "./constants";
 import { MyModule } from "./types";
 
 let module: MyModule;
 
 Hooks.once("init", () => {
-  console.log(`Initializing ${moduleName}`);
+  console.log(`Initializing ${moduleId}`);
 
-  module = (game as Game).modules.get(moduleName) as MyModule;
+  module = (game as Game).modules.get(moduleId) as MyModule;
   module.dogBrowser = new DogBrowser();
 });
 
