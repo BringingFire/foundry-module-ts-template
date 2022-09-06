@@ -1,1 +1,3 @@
-console.log("Hello world!");
+Hooks.once("init", () => {
+  console.log("Hello world!");
+});

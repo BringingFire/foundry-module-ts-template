@@ -1,5 +1,8 @@
 {
   "compilerOptions": {
+    "types": [
+      "@league-of-foundry-developers/foundry-vtt-types",
+    ],
     "target": "ESNext",
     "useDefineForClassFields": true,
     "module": "ESNext",
