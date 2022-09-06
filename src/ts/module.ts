@@ -16,7 +16,7 @@ Hooks.on("renderActorDirectory", (_: Application, html: JQuery) => {
     `<button class="cc-sidebar-button" type="button">🐶</button>`
   );
   button.on("click", () => {
-    console.warn("DOG");
+    module.dogBrowser.render(true);
   });
   html.find(".directory-header .action-buttons").append(button);
 });

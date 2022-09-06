@@ -15,7 +15,10 @@ export default defineConfig({
   },
   plugins: [
     copy({
-      targets: [{ src: "src/module.json", dest: "dist" }],
+      targets: [
+        { src: "src/module.json", dest: "dist" },
+        { src: "src/templates", dest: "dist" },
+      ],
       hook: "writeBundle",
     }),
   ],
