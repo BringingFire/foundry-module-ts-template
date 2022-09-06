@@ -1,3 +1,6 @@
+// Do not remove this import. If you do Vite will think your styles are dead
+// code and not include them in the build output.
+import "../styles/style.scss";
 import DogBrowser from "./apps/dogBrowser";
 import { moduleName } from "./constants";
 import { MyModule } from "./types";

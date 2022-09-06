@@ -1,4 +1,5 @@
 import copy from "rollup-plugin-copy";
+import scss from "rollup-plugin-scss";
 import { defineConfig } from "vite";
 
 export default defineConfig({
@@ -14,6 +15,11 @@ export default defineConfig({
     },
   },
   plugins: [
+    scss({
+      output: "dist/style.css",
+      sourceMap: true,
+      watch: ["src/styles/*.scss"],
+    }),
     copy({
       targets: [
         { src: "src/module.json", dest: "dist" },

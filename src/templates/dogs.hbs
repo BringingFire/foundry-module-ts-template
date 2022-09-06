@@ -3,17 +3,22 @@
     <h1 class="grow-header">
       Dogs
     </h1>
-    <button class="module-control" type="button" title="Fetch random dog picture" data-action="randomize-dog">
+    <button
+      class="module-control"
+      type="button"
+      title="Fetch random dog picture"
+      data-action="randomize-dog"
+    >
       <i class="fas fa-random fa-fw"></i>
     </button>
   </header>
 </section>
-<section>
+<section class="module-dog-picture-container">
   {{#if this.imageUrl}}
-  <img src="{{ this.imageUrl }}" alt="Image of a random dog" style="max-width: 500; max-height: 500;"/>
+    <img class="module-dog-image" src="{{this.imageUrl}}" alt="Image of a random dog" />
   {{else}}
-  <p style="font-size: 200px;">
-    🐶
-  </p>
+    <p class="module-dog-placeholder">
+      🐶
+    </p>
   {{/if}}
 </section>

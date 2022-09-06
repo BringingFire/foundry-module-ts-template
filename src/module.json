@@ -14,5 +14,6 @@
     "verified": "10",
     "maximum": "10"
   },
+  "styles": ["style.css"],
   "esmodules": ["scripts/module.js"]
 }
