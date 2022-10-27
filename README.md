@@ -1,6 +1,8 @@
-# Foundry Module Template w/ Typescript
+# FoundryVTT Module Template w/ Typescript
 
 This repo is meant to be used as a starting point for creating your own FoundryVTT module with [Typescript][2]. If you are using Github you can get started by clicking the green `Use this template` button in the upper-right.
+
+Check out [our blog post][4] for a walkthrough of the codebase.
 
 ## What's in the box
 
@@ -17,3 +19,4 @@ If you have just created a new project with this template there are a few change
 [1]: https://foundryvtt.com/
 [2]: https://www.typescriptlang.org/
 [3]: https://dog.ceo/dog-api/
+[4]: https://bringingfire.com/blog/intro-to-foundry-module-development
